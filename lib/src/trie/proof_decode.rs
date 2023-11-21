@@ -183,6 +183,12 @@ where
             for (proof_entry_range, storage_key_before_partial) in
                 mem::replace(&mut remain_iterate, Vec::with_capacity(merkle_values.len()))
             {
+                // TODO: this is a bit of a hack to avoid invalid decode errors.
+                // Remove after this is resolved https://github.com/smol-dot/smoldot/pull/1362
+                if proof_entry_range.is_empty() {
+                    continue;
+                }
+
                 // Decodes the proof entry.
                 let proof_entry = &proof_as_ref[proof_entry_range.clone()];
                 let decoded_node_value =
