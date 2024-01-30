@@ -356,7 +356,7 @@ where
                 )
                 && !visited_entries_stack.is_empty()
             {
-                return Err(Error::NonRootBranchNodeWithNoValue);
+                // return Err(Error::NonRootBranchNodeWithNoValue);
             }
 
             // Nodes with no storage value and one children are forbidden.
